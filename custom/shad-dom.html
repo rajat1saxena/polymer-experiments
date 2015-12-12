@@ -1,0 +1,51 @@
+<!-- Element which exposes shadow dom so that we can change thing using light dom -->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="shad-dom">
+	<template>
+		<style>
+			:host > ::content q{
+				background: red;
+			}
+			:host > ::content so{
+				background: yellow;
+			}
+		</style>
+		<p>
+			<content select="q"></content> is good.
+			<content select="so"></content> is defined.
+			<span id="name"></span>
+			<!-- Following will be hidden by local DOM manipulation technique -->
+			<span id="hideme">Hideous text</span>
+		</p>
+	</template>
+	<script>
+		Polymer({
+			is: "shad-dom",
+			hostAttributes: {
+				'string-attribute': 'hello',
+				tabIndex: 0
+			},
+			properties: {
+				name: {
+					type: String,
+					value: "God 2"
+				},
+				age: Number
+			},
+			attached: function(){
+				this.$.name.textContent = 'Belongs to '+(this.name);
+
+				// Local DOM manipulation: append a div
+				var toLocal = document.createElement('div');
+				Polymer.dom(this.root).appendChild(toLocal);
+				// hide hideous text span
+				var hideousSpan = Polymer.dom(this.root).querySelector("#hideme"); // shorthand: this.$$('#hideme')
+				hideousSpan.style.display = "none";
+
+				console.log("Children: "+this.getEffectiveChildren().length);
+			}
+		});
+	</script>
+</dom-element>

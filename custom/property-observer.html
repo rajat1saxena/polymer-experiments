@@ -1,0 +1,50 @@
+<!-- Observer of user properties -->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="property-observer">
+	<template>
+		<style>
+			:host{
+				border: 1px solid green;
+				padding: 2px;
+			}
+			input{
+				padding: 2px;
+				border-radius: 2px;
+				border: 2px solid blue;
+			}
+		</style>
+		<input value="{{userName::input}}">
+		<p>Input: [[userName]]</p>
+	</template>
+	<script>
+		Polymer({
+			is: "property-observer",
+			properties: {
+				userName: {
+					type: String,
+					value: "",
+					// updates the attribute with same name
+					reflectToAttribute: true,
+					// notify: true,
+				}
+			},
+			// Each item of observers array is a method name followed by 
+     		// a comma-separated list of one or more paths.
+			observers: [
+				"nameChanged(userName)"
+			],
+			// Each method referenced in observers must be defined in 
+	      	// element prototype. The argument to the method is the new value
+	      	// of the sub-property. 
+	      	nameChanged: function(name){
+	      		console.log(name);
+	      	},
+	      	// triggers on user property's value change due to 'notify: true'
+	      	// user-changed: function(){
+	      	// 	console.log("Name changed detected!");
+	      	// }
+		});
+	</script>
+</dom-module>

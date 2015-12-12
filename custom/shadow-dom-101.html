@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<!-- This is the stand alone example of how shadow dom works. For more info, go to
+this url: http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/ -->
+
+<html>
+	<head>
+		<title>Shadow dom 101</title>
+	</head>
+	<body>
+		<div id="nameTag">Rajat</div>
+		<template id="nameTagTemplate">
+			<style>
+				.outer{
+					border: 1px solid black;
+				}
+				.inner{
+					background: red;
+					color: white;
+					padding: 5px;
+				}
+			</style>
+			<div class="outer">
+				<div class="inner">
+					<content></content> is good.
+				</div>
+			</div>
+		</template>
+		<script type="text/javascript">
+			var shadow = document.querySelector("#nameTag").createShadowRoot();
+			var template = document.querySelector("#nameTagTemplate");
+			var clone = document.importNode(template.content,true);
+			shadow.appendChild(clone);
+		</script>
+	</body>
+</html>

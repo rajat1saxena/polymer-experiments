@@ -3,6 +3,8 @@
   <head>
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="custom/first.html">
+    <link rel="import" href="custom/shad-dom.html">
+    <link rel="import" href="custom/property-observer.html">
   </head>
   <body>
   	<dom-module id="main-docelement">
@@ -26,5 +28,13 @@
     </dom-module>
     <proto-element></proto-element>
     <main-docelement></main-docelement>
+
+    <!-- using shad-dom elements and change its values using light dom -->
+    <shad-dom><q>Haha man!</q><so>Okay</so></shad-dom>
+    <shad-dom name="Namrata"><q>Rajat?</q></shad-dom>
+    <shad-dom name="Gurbani"><q>Same here.</q></shad-dom>
+
+    <!-- property observer and two way data binding -->
+    <property-observer user-name="ramesh"></property-observer>
   </body>
 </html>
