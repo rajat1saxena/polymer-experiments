@@ -1,0 +1,22 @@
+{
+  "name": "Test",
+  "authors": [
+    "Rajat Saxena <rajat@raynstudios.in>"
+  ],
+  "description": "Just test playground",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0"
+  }
+}
