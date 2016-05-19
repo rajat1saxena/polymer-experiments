@@ -1,2 +1,2 @@
 # polymer-experiments
-Just me doing Polymer thing
+This project contains my experiments and learnings about Polymer framework.

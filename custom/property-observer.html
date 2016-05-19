@@ -8,15 +8,18 @@
 			:host{
 				border: 1px solid green;
 				padding: 2px;
+				/* apply a mixin */
+				@apply(--property-observer-host);
 			}
 			input{
 				padding: 2px;
 				border-radius: 2px;
-				border: 2px solid blue;
+				border: 2px solid var(--input-border-color,blue);
 			}
 		</style>
 		<input value="{{userName::input}}">
 		<p>Input: [[userName]]</p>
+		<button on-tap="changeTheme">Change theme</button>
 	</template>
 	<script>
 		Polymer({
@@ -41,6 +44,12 @@
 	      	nameChanged: function(name){
 	      		console.log(name);
 	      	},
+	      	// Changes to the theme is not automatically applied, use updateStyles() to
+	      	// reflect changes.
+	      	changeTheme: function(){
+	      		this.customStyle['--input-border-color']='red';
+	      		this.updateStyles();
+	      	}
 	      	// triggers on user property's value change due to 'notify: true'
 	      	// user-changed: function(){
 	      	// 	console.log("Name changed detected!");

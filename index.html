@@ -5,8 +5,15 @@
     <link rel="import" href="custom/first.html">
     <link rel="import" href="custom/shad-dom.html">
     <link rel="import" href="custom/property-observer.html">
+    <link rel="import" href="custom/event-listener.html">
+    <link rel="import" href="custom/template-repeator.html">
   </head>
   <body>
+    <style is="custom-style">
+      :root{
+        --shad-dom-so-background: gray;
+      }
+    </style>
   	<dom-module id="main-docelement">
       <template>
         <p>
@@ -36,5 +43,19 @@
 
     <!-- property observer and two way data binding -->
     <property-observer user-name="ramesh"></property-observer>
+
+    <!-- event listener custom element -->
+    <event-listener></event-listener>
+    <!-- kick event won't be binded to following element -->
+    <event-listener></event-listener>
+    <script>
+      // bind event-listener's kick event
+      document.querySelector('event-listener').addEventListener('kick',function(e){
+        console.log(e.detail.kicked);
+      });
+    </script>
+
+    <template-repeator></template-repeator>
+
   </body>
 </html>

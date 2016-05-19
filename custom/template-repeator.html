@@ -1,0 +1,39 @@
+<!-- Repeat template for array -->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="template-repeator">
+	<template>
+		<div>Employee list:</div>
+		<template is="dom-repeat" items="{{ employees }}">
+			<div><span>#{{index}}</span></div>
+			<div>Firstname: {{item.firstname}}</div>
+			<div>Lastname: {{item.lastname}}</div>
+			<div>Age: {{item.age}} <button on-click="decAge">-</button> <button on-click="incAge">+</button></div>
+		</template>
+		<button on-click="addExtra">Add extra item</button>
+	</template>
+	<script>
+		Polymer({
+			is: 'template-repeator',
+			ready: function(){
+				this.employees = [
+					{firstname: 'Rajat',lastname: 'Saxena',age: 28},
+					{firstname: 'Neeraj',lastname: 'Bhatia',age: 26},
+				];
+			},
+			addExtra: function(){
+				this.push('employees',{firstname: 'Preeti',lastname: 'Sharma',age: 23});
+			},
+			// dom-repeat element's model is the base item associated with individual element
+			incAge: function(e){
+				var model = e.model;
+				model.set('item.age',model.item.age+1);
+			},
+			decAge: function(e){
+				var model = e.model;
+				model.set('item.age',model.item.age-1);
+			},
+		});
+	</script>
+</dom-module>

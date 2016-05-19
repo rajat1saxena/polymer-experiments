@@ -1,0 +1,37 @@
+<!-- Event listener -->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="event-listener">
+	<template>
+		<div>
+			<p on-click="pClicked">This is me</p>
+		</div>
+		<div id="special">
+			[tap here for special]
+		</div>
+		<div on-click="handleKick">[fire custom event 'kick']</div>
+	</template>
+	<script>
+		Polymer({
+			is: 'event-listener'
+			,
+			listeners: {
+				'tap': 'regularTap',
+				'special.tap': 'specialTap'
+			},
+			regularTap: function(e){
+				console.log("Regular tap: "+e);
+			},
+			specialTap: function(e){
+				console.log("Special tap: "+e);
+			},
+			pClicked: function(e){
+				console.log("P tag clicked");
+			},
+			handleKick: function(e){
+				this.fire('kick',{kicked:true});
+			}
+		});
+	</script>
+</dom-module>

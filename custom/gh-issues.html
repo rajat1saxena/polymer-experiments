@@ -1,0 +1,57 @@
+<!-- Iron ajax demo: Github issues fetcher -->
+<!-- YT video: https://www.youtube.com/watch?v=k1eR_3KqJms&index=12&list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN -->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!-- Best practice: Always import all the components required for this element, don't rely on elements.html in PSK for importing all the necessary elements -->
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="gh-issues">
+	<template>
+		<iron-ajax
+			auto
+			url = "{{url}}"
+			handle-as="json" 
+			params='{{options}}'
+			last-response="{{response}}"></iron-ajax>
+			<!-- Iterate over data returned from response binding -->
+			<template is="dom-repeat" items="{{response}}">
+				<div>
+					<a href="{{item.html_url}}" target="_blank">{{item.title}}</a>
+				</div>
+			</template>
+	</template>
+	<script>
+		Polymer({
+			is: 'gh-issues',
+			properties: {
+				owner: {
+					value: 'polymer',
+					notify: true
+				},
+				repo: {
+					value: 'polymer',
+					notify: true
+				},
+				page: {
+					value: 0,
+					notify: true,
+				},
+				// remember to set default value for url to compute
+				url: {
+					computed: 'computeUrl(owner,repo)'
+				},
+				options: {
+					computed: 'computeOptions(page)'
+				}
+			},
+			// this function calculates the url whenever owner or repo changes
+			computeUrl: function(owner,repo) {
+				return ['https://api.github.com/repos',owner,repo,'issues'].join('/');
+			},
+			computeOptions: function(page){
+				return {page: page};
+			}
+		});
+	</script>
+</dom-module>

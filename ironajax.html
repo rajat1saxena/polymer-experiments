@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="custom/gh-issues.html">
+    <title>Github :: Issues fetch</title>
+  </head>
+  <body>
+  	<!-- To create data binding here, without creating a custom element, use dom-bind template
+  	-->
+  	<template is="dom-bind">
+  		<!-- 'input' event triggers on every key press while 'change' event triggers only
+  		when focus is taken away from input field -->
+  		<h2>Github :: Issues fetch</h2>
+  		<p>Input boxes(in sequence): owner, repo, page</p>
+  		<input type="text" value="{{owner::change}}">
+  		<input type="text" value="{{repo::change}}">
+  		<input type="text" value="{{page::change}}">
+  		<gh-issues owner="{{owner}}" repo="{{repo}}" page="{{page}}"></gh-issues>
+  	</template>
+  </body>
+</html>
